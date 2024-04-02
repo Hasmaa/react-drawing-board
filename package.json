@@ -1,6 +1,6 @@
 {
   "name": "@hasma/react-drawing-board",
-  "version": "0.5.22",
+  "version": "0.5.23",
   "description": "",
   "main": "lib/index.js",
   "authors": {
@@ -16,8 +16,7 @@
   "scripts": {
     "dev": "umi dev",
     "build": "father build",
-    "prepare": "npm run build",
-    "postinstall": "node scripts/postinstall.js"
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@types/vfile-message": "^2.0.0",

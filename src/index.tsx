@@ -92,6 +92,12 @@ const Block: React.FC<BlockProps> = (props) => {
   useEffect(() => {
     const keydownHandler = (evt: KeyboardEvent) => {
       const { keyCode } = evt;
+
+      // if text tool is active, prevent shortcut keys.
+      if (currentTool === Tool.Text) {
+        return;
+      }
+
       // key 'p'
       if (keyCode === 80) {
         setCurrentTool(Tool.Stroke);

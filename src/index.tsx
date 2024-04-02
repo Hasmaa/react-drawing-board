@@ -163,6 +163,7 @@ const Block: React.FC<BlockProps> = (props) => {
 
   return (
     <ConfigContext.Provider value={config}>
+      {/* @ts-ignore */}
       <IntlProvider locale={locale} messages={locales.messages[locale]}>
         <EnableSketchPadContext.Provider value={enableSketchPadContextValue}>
           <ConfigContext.Consumer>

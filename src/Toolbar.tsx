@@ -270,6 +270,7 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
           });
 
           return (
+            // @ts-ignore
             <Dropdown
               getPopupContainer={(dom) => dom.parentElement}
               key={tool.label}

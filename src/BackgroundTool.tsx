@@ -11,6 +11,7 @@ export const useBackgroundDropdown = (config: {
   const { formatMessage } = useIntl();
 
   return (
+    // @ts-ignore
     <Menu>
       <Menu.Item onClick={() => selectBackgroundImage()}>
         {formatMessage({ id: 'umi.block.sketch.bg.select' })}

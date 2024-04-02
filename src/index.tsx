@@ -97,37 +97,37 @@ const Block: React.FC<BlockProps> = (props) => {
 
   const scale = extract_scale_from_matrix(viewMatrix);
 
+  const keydownHandler = useCallback(
+    (evt: KeyboardEvent) => {
+      const { keyCode } = evt;
+
+      console.log('currentTool:', currentTool);
+
+      // if text tool is active, prevent shortcut keys.
+      if (currentTool === Tool.Text) {
+        return;
+      }
+
+      // key 'p'
+      if (keyCode === 80) {
+        setCurrentTool(Tool.Stroke);
+      } else if (keyCode === 82) {
+        // key 'r'
+        setCurrentTool(Tool.Shape);
+        setCurrentToolOption({ ...currentToolOption, shapeType: ShapeType.Rectangle });
+      } else if (keyCode === 79) {
+        // key 'o'
+        setCurrentTool(Tool.Shape);
+        setCurrentToolOption({ ...currentToolOption, shapeType: ShapeType.Oval });
+      } else if (keyCode === 84) {
+        // key 't'
+        setCurrentTool(Tool.Text);
+      }
+    },
+    [currentTool],
+  );
+
   useEffect(() => {
-    const keydownHandler = useCallback(
-      (evt: KeyboardEvent) => {
-        const { keyCode } = evt;
-
-        console.log('currentTool:', currentTool);
-
-        // if text tool is active, prevent shortcut keys.
-        if (currentTool === Tool.Text) {
-          return;
-        }
-
-        // key 'p'
-        if (keyCode === 80) {
-          setCurrentTool(Tool.Stroke);
-        } else if (keyCode === 82) {
-          // key 'r'
-          setCurrentTool(Tool.Shape);
-          setCurrentToolOption({ ...currentToolOption, shapeType: ShapeType.Rectangle });
-        } else if (keyCode === 79) {
-          // key 'o'
-          setCurrentTool(Tool.Shape);
-          setCurrentToolOption({ ...currentToolOption, shapeType: ShapeType.Oval });
-        } else if (keyCode === 84) {
-          // key 't'
-          setCurrentTool(Tool.Text);
-        }
-      },
-      [currentTool],
-    );
-
     addEventListener('keydown', keydownHandler);
 
     return () => removeEventListener('keydown', keydownHandler);

@@ -48,6 +48,8 @@ interface BlockProps {
   clsssName?: string;
 
   toolbarPlacement?: 'top' | 'left' | 'right';
+
+  disableShortcutKeys?: boolean;
 }
 
 const AnimatedSketchPad = animated(SketchPad);
@@ -74,6 +76,7 @@ const Block: React.FC<BlockProps> = (props) => {
     initialBackground,
     viewMatrix: viewMatrixProp,
     onViewMatrixChange,
+    disableShortcutKeys,
   } = {
     ...defaultProps,
     ...props,
@@ -101,13 +104,6 @@ const Block: React.FC<BlockProps> = (props) => {
     (evt: KeyboardEvent) => {
       const { keyCode } = evt;
 
-      console.log('currentTool:', currentTool);
-
-      // if text tool is active, prevent shortcut keys.
-      if (currentTool === Tool.Text) {
-        return;
-      }
-
       // key 'p'
       if (keyCode === 80) {
         setCurrentTool(Tool.Stroke);
@@ -128,9 +124,14 @@ const Block: React.FC<BlockProps> = (props) => {
   );
 
   useEffect(() => {
-    addEventListener('keydown', keydownHandler);
+    if (disableShortcutKeys) {
+      return;
+    }
 
-    return () => removeEventListener('keydown', keydownHandler);
+    document.addEventListener('keydown', keydownHandler);
+    return () => {
+      document.removeEventListener('keydown', keydownHandler);
+    };
   }, []);
 
   const renderWithLayout = (toolbar: React.ReactElement, sketchPad: React.ReactElement) => {

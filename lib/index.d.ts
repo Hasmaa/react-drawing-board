@@ -15,6 +15,7 @@ interface BlockProps {
     style?: CSSProperties;
     clsssName?: string;
     toolbarPlacement?: 'top' | 'left' | 'right';
+    disableShortcutKeys?: boolean;
 }
 declare const Block: React.FC<BlockProps>;
 export default Block;

@@ -41,7 +41,7 @@ interface ToolConfig {
 }
 
 const useTools = () => {
-  const { showBackgroundTool } = useContext(ConfigContext);
+  const { showBackgroundTool, showImageTool, showMagnificationTool } = useContext(ConfigContext);
 
   const tools: ToolConfig[] = useMemo(() => {
     return [
@@ -67,11 +67,15 @@ const useTools = () => {
         icon: TextIcon,
         type: Tool.Text,
       },
-      {
-        label: 'umi.block.sketch.image',
-        icon: ImageIcon,
-        type: Tool.Image,
-      },
+      ...(showImageTool
+        ? [
+            {
+              label: 'umi.block.sketch.image',
+              icon: ImageIcon,
+              type: Tool.Image,
+            },
+          ]
+        : []),
       ...(showBackgroundTool
         ? [
             {
@@ -108,7 +112,7 @@ const useTools = () => {
           marginRight: 'auto',
         },
       },
-      ...(!isMobileDevice
+      ...(showMagnificationTool
         ? [
             {
               label: '100%',
@@ -118,17 +122,13 @@ const useTools = () => {
             },
           ]
         : []),
-      ...(!isMobileDevice
-        ? [
-            {
-              label: 'umi.block.sketch.save',
-              icon: SaveIcon,
-              type: Tool.Save,
-            },
-          ]
-        : []),
+      {
+        label: 'umi.block.sketch.save',
+        icon: SaveIcon,
+        type: Tool.Save,
+      },
     ];
-  }, [showBackgroundTool]);
+  }, [showBackgroundTool, showImageTool, showMagnificationTool]);
 
   return tools;
 };

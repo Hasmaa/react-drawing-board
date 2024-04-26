@@ -41,6 +41,8 @@ interface BlockProps {
 
   // optional tools
   showBackgroundTool?: boolean;
+  showImageTool?: boolean;
+  showMagnificationTool?: boolean;
   initialBackground?: string;
 
   style?: CSSProperties;
@@ -73,6 +75,8 @@ const Block: React.FC<BlockProps> = (props) => {
     clsssName,
     onSave,
     showBackgroundTool,
+    showImageTool,
+    showMagnificationTool,
     initialBackground,
     viewMatrix: viewMatrixProp,
     onViewMatrixChange,
@@ -176,8 +180,10 @@ const Block: React.FC<BlockProps> = (props) => {
     return {
       ...DefaultConfig,
       showBackgroundTool,
+      showImageTool,
+      showMagnificationTool,
     };
-  }, [DefaultConfig, showBackgroundTool]);
+  }, [DefaultConfig, showBackgroundTool, showImageTool, showMagnificationTool]);
 
   const locale = props.locale && locales.messages[props.locale] ? props.locale : 'en-US';
 

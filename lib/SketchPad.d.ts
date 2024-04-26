@@ -28,6 +28,7 @@ export type SketchPadRef = {
     undo: () => void;
     redo: () => void;
     clear: () => void;
+    print: () => void;
     save: (handleSave?: onSaveCallback) => void;
 };
 export type Remove = {

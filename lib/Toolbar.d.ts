@@ -13,6 +13,7 @@ export interface ToolbarProps {
     redo: () => void;
     clear: () => void;
     save: () => void;
+    print: () => void;
     scale: number;
     toolbarPlacement: string;
 }

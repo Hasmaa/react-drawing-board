@@ -14,7 +14,8 @@ declare enum Tool {
     LazyUpdate = "LazyUpdate",
     Remove = "Remove",
     Background = "Background",
-    RemoveBackground = "RemoveBackground"
+    RemoveBackground = "RemoveBackground",
+    Print = "Print"
 }
 export declare enum ShapeType {
     Rectangle = "Rectangle",

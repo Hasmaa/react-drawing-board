@@ -15,7 +15,6 @@ enum Tool {
   Remove = 'Remove',
   Background = 'Background',
   RemoveBackground = 'RemoveBackground',
-  Print = 'Print',
 }
 
 export enum ShapeType {

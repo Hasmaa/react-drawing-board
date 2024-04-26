@@ -241,11 +241,6 @@ const Block: React.FC<BlockProps> = (props) => {
                         refSketch.current.save(onSave);
                       }
                     }}
-                    print={() => {
-                      if (refSketch.current) {
-                        refSketch.current.print();
-                      }
-                    }}
                   />,
                   <AnimatedSketchPad
                     ref={refSketch}

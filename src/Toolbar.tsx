@@ -14,7 +14,6 @@ import ZoomIcon from './svgs/ZoomIcon';
 import SaveIcon from './svgs/SaveIcon';
 import EraserIcon from './svgs/EraserIcon';
 import BackgroundIcon from './svgs/BackgroundIcon';
-import PrintIcon from './svgs/PrintIcon';
 import { useStrokeDropdown } from './StrokeTool';
 import { useShapeDropdown } from './ShapeTool';
 import { useBackgroundDropdown } from './BackgroundTool';
@@ -128,11 +127,6 @@ const useTools = () => {
         icon: SaveIcon,
         type: Tool.Save,
       },
-      {
-        label: 'umi.block.sketch.print',
-        icon: PrintIcon,
-        type: Tool.Print,
-      },
     ];
   }, [showBackgroundTool, showImageTool, showMagnificationTool]);
 
@@ -151,7 +145,6 @@ export interface ToolbarProps {
   redo: () => void;
   clear: () => void;
   save: () => void;
-  print: () => void;
   scale: number;
   toolbarPlacement: string;
 }
@@ -245,8 +238,6 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
               } else if (tool.type === Tool.Clear) {
                 clear();
               } else if (tool.type === Tool.Zoom) {
-              } else if (tool.type === Tool.Print) {
-                print();
               } else if (tool.type === Tool.Save) {
                 save();
               } else {

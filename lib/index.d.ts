@@ -11,6 +11,8 @@ interface BlockProps {
     viewMatrix?: ViewMatrix;
     onViewMatrixChange?: (viewMatrix: ViewMatrix) => void;
     showBackgroundTool?: boolean;
+    showImageTool?: boolean;
+    showMagnificationTool?: boolean;
     initialBackground?: string;
     style?: CSSProperties;
     clsssName?: string;

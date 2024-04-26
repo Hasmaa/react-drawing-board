@@ -86,6 +86,7 @@ export type SketchPadRef = {
   undo: () => void;
   redo: () => void;
   clear: () => void;
+  print: () => void;
   save: (handleSave?: onSaveCallback) => void;
 };
 
@@ -1063,6 +1064,15 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
             a.download = 'sketch.png';
             a.click();
           }
+        }
+      },
+      print: () => {
+        if (refCanvas.current) {
+          const canvas = refCanvas.current;
+          const dataUrl = canvas.toDataURL('image/png');
+          const win = window.open();
+          win.document.write(`<img src="${dataUrl}" style="width: 100%" />`);
+          win.print();
         }
       },
     };

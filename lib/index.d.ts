@@ -5,6 +5,8 @@ import './index.less';
 interface BlockProps {
     userId?: string;
     locale?: localeType;
+    forceExternalLocale?: boolean;
+    externalLocaleMessages?: Record<string, string>;
     operations?: Operation[];
     onChange?: onChangeCallback;
     onSave?: onSaveCallback;

@@ -67,7 +67,6 @@ export interface SketchPadProps {
   currentToolOption: ToolOption;
   userId: string;
   initialBackground?: string;
-  preventDisableScrolling: boolean;
 
   // controlled mode.
   operations?: Operation[];
@@ -508,7 +507,6 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     onChange,
     viewMatrix,
     onViewMatrixChange,
-    preventDisableScrolling,
   } = props;
 
   const refCanvas = useRef<HTMLCanvasElement>(null);
@@ -698,9 +696,6 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   // disable default scrolling on mobile device.
   // refer: https://stackoverflow.com/questions/49500339/cant-prevent-touchmove-from-scrolling-window-on-ios
   useEffect(() => {
-    if (preventDisableScrolling && !currentTool) {
-      return;
-    }
     const handler = (e: TouchEvent) => {
       // only disable scroll when interact with this board.
       if (lastTapRef.current) {
@@ -716,7 +711,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     return () => {
       document.removeEventListener('touchmove', handler);
     };
-  }, [preventDisableScrolling, currentTool]);
+  }, []);
 
   const handleCompleteOperation = (
     tool?: Tool,

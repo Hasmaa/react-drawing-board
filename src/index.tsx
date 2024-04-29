@@ -31,6 +31,8 @@ const { Header, Sider, Content } = Layout;
 interface BlockProps {
   userId?: string;
   locale?: localeType;
+  forceExternalLocale?: boolean;
+  externalLocaleMessages?: Record<string, string>;
 
   // controlled mode.
   operations?: Operation[];
@@ -185,12 +187,27 @@ const Block: React.FC<BlockProps> = (props) => {
     };
   }, [DefaultConfig, showBackgroundTool, showImageTool, showMagnificationTool]);
 
-  const locale = props.locale && locales.messages[props.locale] ? props.locale : 'en-US';
+  const getLocale = () => {
+    if (props.forceExternalLocale && props.externalLocaleMessages) {
+      return 'external';
+    }
+    return props.locale && locales.messages[props.locale] ? props.locale : 'en-US';
+  };
+
+  const getLocaleMessages = () => {
+    if (props.forceExternalLocale && props.externalLocaleMessages) {
+      return props.externalLocaleMessages;
+    }
+    return locales.messages[getLocale()];
+  };
+
+  const locale = getLocale();
+  const localeMessages = getLocaleMessages();
 
   return (
     <ConfigContext.Provider value={config}>
       {/* @ts-ignore */}
-      <IntlProvider locale={locale} messages={locales.messages[locale]}>
+      <IntlProvider locale={locale} messages={localeMessages}>
         <EnableSketchPadContext.Provider value={enableSketchPadContextValue}>
           <ConfigContext.Consumer>
             {(config) => (

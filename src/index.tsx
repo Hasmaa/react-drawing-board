@@ -199,7 +199,9 @@ const Block: React.FC<BlockProps> = (props) => {
 
   const getLocaleMessages = () => {
     if (props.forceExternalLocale && props.externalLocaleMessages) {
-      return props.externalLocaleMessages;
+      return {
+        external: props.externalLocaleMessages,
+      };
     }
     return locales.messages[getLocale()];
   };

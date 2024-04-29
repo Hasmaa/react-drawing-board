@@ -20,6 +20,7 @@ interface BlockProps {
     clsssName?: string;
     toolbarPlacement?: 'top' | 'left' | 'right';
     disableShortcutKeys?: boolean;
+    preventDisableScrolling?: boolean;
 }
 declare const Block: React.FC<BlockProps>;
 export default Block;

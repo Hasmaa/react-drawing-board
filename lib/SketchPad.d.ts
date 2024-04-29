@@ -11,6 +11,7 @@ export interface SketchPadProps {
     currentToolOption: ToolOption;
     userId: string;
     initialBackground?: string;
+    preventDisableScrolling: boolean;
     operations?: Operation[];
     onChange?: onChangeCallback;
     viewMatrix: ViewMatrix;

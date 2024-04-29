@@ -54,6 +54,7 @@ interface BlockProps {
   toolbarPlacement?: 'top' | 'left' | 'right';
 
   disableShortcutKeys?: boolean;
+  preventDisableScrolling?: boolean;
 }
 
 const AnimatedSketchPad = animated(SketchPad);
@@ -83,6 +84,7 @@ const Block: React.FC<BlockProps> = (props) => {
     viewMatrix: viewMatrixProp,
     onViewMatrixChange,
     disableShortcutKeys,
+    preventDisableScrolling,
   } = {
     ...defaultProps,
     ...props,
@@ -184,6 +186,7 @@ const Block: React.FC<BlockProps> = (props) => {
       showBackgroundTool,
       showImageTool,
       showMagnificationTool,
+      preventDisableScrolling,
     };
   }, [DefaultConfig, showBackgroundTool, showImageTool, showMagnificationTool]);
 
@@ -269,6 +272,7 @@ const Block: React.FC<BlockProps> = (props) => {
                     onViewMatrixChange={setViewMatrix}
                     operations={operations}
                     initialBackground={initialBackground}
+                    preventDisableScrolling={preventDisableScrolling}
                     onChange={onChange}
                   />,
                 )}

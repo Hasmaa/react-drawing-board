@@ -697,9 +697,13 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   // refer: https://stackoverflow.com/questions/49500339/cant-prevent-touchmove-from-scrolling-window-on-ios
   useEffect(() => {
     const handler = (e: TouchEvent) => {
+      // shortcircuit scroll disableing if more than 1 finger used
+      if (e.touches.length > 1) {
+        return;
+      }
+
       // only disable scroll when interact with this board.
-      // only if is using one finger to move on tables, more than one should scroll
-      if (lastTapRef.current && e.touches?.length === 1) {
+      if (lastTapRef.current) {
         e.preventDefault();
       }
       onTouchMoveRef.current && onTouchMoveRef.current(e);

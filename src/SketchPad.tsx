@@ -698,7 +698,8 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   useEffect(() => {
     const handler = (e: TouchEvent) => {
       // only disable scroll when interact with this board.
-      if (lastTapRef.current) {
+      // only if is using one finger to move on tables, more than one should scroll
+      if (lastTapRef.current && e.touches?.length === 1) {
         e.preventDefault();
       }
       onTouchMoveRef.current && onTouchMoveRef.current(e);

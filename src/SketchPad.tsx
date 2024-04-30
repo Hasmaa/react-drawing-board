@@ -701,6 +701,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
       console.log('touches:', e.touches, e.touches.length);
       // only disable scroll when interact with this board.
       if (lastTapRef.current && e.touches.length === 1) {
+        console.log('in prevent default', e.touches.length);
         e.preventDefault();
       }
       onTouchMoveRef.current && onTouchMoveRef.current(e);

@@ -700,7 +700,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
       console.log('event:', e);
       console.log('touches:', e.touches, e.touches.length);
       // only disable scroll when interact with this board.
-      if (lastTapRef.current) {
+      if (lastTapRef.current && e.touches.length === 1) {
         e.preventDefault();
       }
       onTouchMoveRef.current && onTouchMoveRef.current(e);
@@ -1072,30 +1072,33 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
 
   useZoomGesture(refCanvas);
   const bindPinch = usePinch((state) => {
-    const { ctrlKey, origin, delta } = state;
+    return;
 
-    if (origin) {
-      onWheel({
-        deltaY: delta[0],
-        ctrlKey,
-        clientX: origin[0],
-        clientY: origin[1],
-        forceWheel: true,
-      });
-    }
+    // const { ctrlKey, origin, delta } = state;
+
+    // if (origin) {
+    //   onWheel({
+    //     deltaY: delta[0],
+    //     ctrlKey,
+    //     clientX: origin[0],
+    //     clientY: origin[1],
+    //     forceWheel: true,
+    //   });
+    // }
   });
   const bindWheel = useWheel((state) => {
-    const { ctrlKey, event, delta, last } = state;
+    return;
+    // const { ctrlKey, event, delta, last } = state;
 
-    if (event && !last && 'clientX' in event) {
-      onWheel({
-        deltaY: delta[1] / 4,
-        ctrlKey,
-        clientX: event.clientX + 0,
-        clientY: event.clientY + 0,
-        forceWheel: true,
-      });
-    }
+    // if (event && !last && 'clientX' in event) {
+    //   onWheel({
+    //     deltaY: delta[1] / 4,
+    //     ctrlKey,
+    //     clientX: event.clientX + 0,
+    //     clientY: event.clientY + 0,
+    //     forceWheel: true,
+    //   });
+    // }
   });
 
   let settingMenu = null;

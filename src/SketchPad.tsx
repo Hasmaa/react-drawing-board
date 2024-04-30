@@ -703,8 +703,8 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
       if (lastTapRef.current && e.touches.length === 1) {
         console.log('in prevent default', e.touches.length);
         e.preventDefault();
+        onTouchMoveRef.current && onTouchMoveRef.current(e);
       }
-      onTouchMoveRef.current && onTouchMoveRef.current(e);
     };
 
     document.addEventListener('touchmove', handler, {

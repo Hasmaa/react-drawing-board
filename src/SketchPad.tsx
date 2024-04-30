@@ -793,7 +793,9 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   };
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    console.log('onTouchStart touches length', e.touches.length);
     if (e.touches.length === 1) {
+      console.log('onTouchStart is in if');
       if (e.timeStamp - lastTapRef.current < 300) {
         onDoubleClick(e.touches[0]);
       } else {
@@ -1070,7 +1072,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     };
   });
 
-  useZoomGesture(refCanvas);
+  // useZoomGesture(refCanvas);
   const bindPinch = usePinch((state) => {
     return;
 
@@ -1268,8 +1270,8 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
         onDoubleClick={onDoubleClick}
         className={`${sketchpadPrefixCls}-canvas`}
         style={canvasStyle}
-        {...bindPinch()}
-        {...bindWheel()}
+        // {...bindPinch()}
+        // {...bindWheel()}
       />
 
       <div

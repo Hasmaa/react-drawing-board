@@ -697,14 +697,11 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   // refer: https://stackoverflow.com/questions/49500339/cant-prevent-touchmove-from-scrolling-window-on-ios
   useEffect(() => {
     const handler = (e: TouchEvent) => {
-      console.log('event:', e);
-      console.log('touches:', e.touches, e.touches.length);
       // only disable scroll when interact with this board.
-      if (lastTapRef.current && e.touches.length === 1) {
-        console.log('in prevent default', e.touches.length);
+      if (lastTapRef.current ) {
         e.preventDefault();
-        onTouchMoveRef.current && onTouchMoveRef.current(e);
       }
+      onTouchMoveRef.current && onTouchMoveRef.current(e);
     };
 
     document.addEventListener('touchmove', handler, {
@@ -794,9 +791,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   };
 
   const onTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
-    console.log('onTouchStart touches length', e.touches.length);
     if (e.touches.length === 1) {
-      console.log('onTouchStart is in if');
       if (e.timeStamp - lastTapRef.current < 300) {
         onDoubleClick(e.touches[0]);
       } else {
@@ -1073,35 +1068,33 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     };
   });
 
-  // useZoomGesture(refCanvas);
+  useZoomGesture(refCanvas);
   const bindPinch = usePinch((state) => {
-    return;
 
-    // const { ctrlKey, origin, delta } = state;
+    const { ctrlKey, origin, delta } = state;
 
-    // if (origin) {
-    //   onWheel({
-    //     deltaY: delta[0],
-    //     ctrlKey,
-    //     clientX: origin[0],
-    //     clientY: origin[1],
-    //     forceWheel: true,
-    //   });
-    // }
+    if (origin) {
+      onWheel({
+        deltaY: delta[0],
+        ctrlKey,
+        clientX: origin[0],
+        clientY: origin[1],
+        forceWheel: true,
+      });
+    }
   });
   const bindWheel = useWheel((state) => {
-    return;
-    // const { ctrlKey, event, delta, last } = state;
+    const { ctrlKey, event, delta, last } = state;
 
-    // if (event && !last && 'clientX' in event) {
-    //   onWheel({
-    //     deltaY: delta[1] / 4,
-    //     ctrlKey,
-    //     clientX: event.clientX + 0,
-    //     clientY: event.clientY + 0,
-    //     forceWheel: true,
-    //   });
-    // }
+    if (event && !last && 'clientX' in event) {
+      onWheel({
+        deltaY: delta[1] / 4,
+        ctrlKey,
+        clientX: event.clientX + 0,
+        clientY: event.clientY + 0,
+        forceWheel: true,
+      });
+    }
   });
 
   let settingMenu = null;
@@ -1271,8 +1264,8 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
         onDoubleClick={onDoubleClick}
         className={`${sketchpadPrefixCls}-canvas`}
         style={canvasStyle}
-        // {...bindPinch()}
-        // {...bindWheel()}
+        {...bindPinch()}
+        {...bindWheel()}
       />
 
       <div

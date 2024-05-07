@@ -67,6 +67,7 @@ export interface SketchPadProps {
   currentToolOption: ToolOption;
   userId: string;
   initialBackground?: string;
+  onBackgroundPositionCalculated?: (pos: Position) => void;
 
   // controlled mode.
   operations?: Operation[];
@@ -507,6 +508,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     onChange,
     viewMatrix,
     onViewMatrixChange,
+    onBackgroundPositionCalculated,
   } = props;
 
   const refCanvas = useRef<HTMLCanvasElement>(null);
@@ -585,6 +587,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
         () => {
           renderOperations(operations);
         },
+        onBackgroundPositionCalculated,
       );
       // saveGlobalTransform();
     };
@@ -698,7 +701,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
   useEffect(() => {
     const handler = (e: TouchEvent) => {
       // only disable scroll when interact with this board.
-      if (lastTapRef.current ) {
+      if (lastTapRef.current) {
         e.preventDefault();
       }
       onTouchMoveRef.current && onTouchMoveRef.current(e);
@@ -1070,7 +1073,6 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
 
   useZoomGesture(refCanvas);
   const bindPinch = usePinch((state) => {
-
     const { ctrlKey, origin, delta } = state;
 
     if (origin) {

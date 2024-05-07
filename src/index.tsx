@@ -19,7 +19,7 @@ import SketchPad, {
   onSaveCallback,
   ViewMatrix,
 } from './SketchPad';
-import Tool, { ToolOption, defaultToolOption, ShapeType } from './enums/Tool';
+import Tool, { ToolOption, defaultToolOption, ShapeType, Position } from './enums/Tool';
 import EnableSketchPadContext from './contexts/EnableSketchPadContext';
 import locales, { localeType } from './locales';
 import { extract_scale_from_matrix, isMobileDevice } from './utils';
@@ -33,6 +33,7 @@ interface BlockProps {
   locale?: localeType;
   forceExternalLocale?: boolean;
   externalLocaleMessages?: Record<string, string>;
+  onBackgroundPositionCalculated?: (pos: Position) => void;
 
   // controlled mode.
   operations?: Operation[];
@@ -83,6 +84,7 @@ const Block: React.FC<BlockProps> = (props) => {
     viewMatrix: viewMatrixProp,
     onViewMatrixChange,
     disableShortcutKeys,
+    onBackgroundPositionCalculated,
   } = {
     ...defaultProps,
     ...props,
@@ -270,6 +272,7 @@ const Block: React.FC<BlockProps> = (props) => {
                     operations={operations}
                     initialBackground={initialBackground}
                     onChange={onChange}
+                    onBackgroundPositionCalculated={onBackgroundPositionCalculated}
                   />,
                 )}
               </div>

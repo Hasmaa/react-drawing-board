@@ -54,6 +54,7 @@ export const drawBackgroundImage = (
   viewMatrix: number[],
   id: string,
   rerender: () => void,
+  onBackgroundPositionCalculated: (pos: Position) => void,
 ) => {
   let position: Position | undefined = _cacheBackgroundPosition[item.imageData];
   if (position) {
@@ -61,6 +62,7 @@ export const drawBackgroundImage = (
   } else {
     onImageComplete(item.imageData, canvas, viewMatrix, (_tool, _data, pos) => {
       position = pos;
+      onBackgroundPositionCalculated(pos);
       _cacheBackgroundPosition[item.imageData] = pos;
       drawImage(item, context, position, id, rerender);
     });

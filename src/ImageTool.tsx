@@ -55,8 +55,10 @@ export const drawBackgroundImage = (
   id: string,
   rerender: () => void,
   onBackgroundPositionCalculated: (pos: Position) => void,
+  backgroundPosition?: Position,
 ) => {
-  let position: Position | undefined = _cacheBackgroundPosition[item.imageData];
+  let position: Position | undefined =
+    backgroundPosition || _cacheBackgroundPosition[item.imageData];
   if (position) {
     drawImage(item, context, position, id, rerender);
   } else {

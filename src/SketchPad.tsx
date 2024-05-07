@@ -68,6 +68,7 @@ export interface SketchPadProps {
   userId: string;
   initialBackground?: string;
   onBackgroundPositionCalculated?: (pos: Position) => void;
+  backgroundPosition: Position;
 
   // controlled mode.
   operations?: Operation[];
@@ -509,6 +510,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     viewMatrix,
     onViewMatrixChange,
     onBackgroundPositionCalculated,
+    backgroundPosition,
   } = props;
 
   const refCanvas = useRef<HTMLCanvasElement>(null);
@@ -588,6 +590,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
           renderOperations(operations);
         },
         onBackgroundPositionCalculated,
+        backgroundPosition
       );
       // saveGlobalTransform();
     };

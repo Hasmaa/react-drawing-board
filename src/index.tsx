@@ -34,6 +34,7 @@ interface BlockProps {
   forceExternalLocale?: boolean;
   externalLocaleMessages?: Record<string, string>;
   onBackgroundPositionCalculated?: (pos: Position) => void;
+  backgroundPosition?: Position;
 
   // controlled mode.
   operations?: Operation[];
@@ -85,6 +86,7 @@ const Block: React.FC<BlockProps> = (props) => {
     onViewMatrixChange,
     disableShortcutKeys,
     onBackgroundPositionCalculated,
+    backgroundPosition,
   } = {
     ...defaultProps,
     ...props,
@@ -273,6 +275,7 @@ const Block: React.FC<BlockProps> = (props) => {
                     initialBackground={initialBackground}
                     onChange={onChange}
                     onBackgroundPositionCalculated={onBackgroundPositionCalculated}
+                    backgroundPosition={backgroundPosition}
                   />,
                 )}
               </div>

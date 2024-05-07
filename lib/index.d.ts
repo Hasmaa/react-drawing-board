@@ -9,6 +9,7 @@ interface BlockProps {
     forceExternalLocale?: boolean;
     externalLocaleMessages?: Record<string, string>;
     onBackgroundPositionCalculated?: (pos: Position) => void;
+    backgroundPosition?: Position;
     operations?: Operation[];
     onChange?: onChangeCallback;
     onSave?: onSaveCallback;

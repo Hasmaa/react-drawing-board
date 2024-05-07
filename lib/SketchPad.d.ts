@@ -12,6 +12,7 @@ export interface SketchPadProps {
     userId: string;
     initialBackground?: string;
     onBackgroundPositionCalculated?: (pos: Position) => void;
+    backgroundPosition: Position;
     operations?: Operation[];
     onChange?: onChangeCallback;
     viewMatrix: ViewMatrix;

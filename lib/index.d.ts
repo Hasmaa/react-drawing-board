@@ -1,5 +1,6 @@
 import React, { CSSProperties } from 'react';
 import { Operation, onChangeCallback, onSaveCallback, ViewMatrix } from './SketchPad';
+import { Position } from './enums/Tool';
 import { localeType } from './locales';
 import './index.less';
 interface BlockProps {
@@ -7,6 +8,7 @@ interface BlockProps {
     locale?: localeType;
     forceExternalLocale?: boolean;
     externalLocaleMessages?: Record<string, string>;
+    onBackgroundPositionCalculated?: (pos: Position) => void;
     operations?: Operation[];
     onChange?: onChangeCallback;
     onSave?: onSaveCallback;

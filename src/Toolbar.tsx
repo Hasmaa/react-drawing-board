@@ -14,6 +14,7 @@ import ZoomIcon from './svgs/ZoomIcon';
 import SaveIcon from './svgs/SaveIcon';
 import EraserIcon from './svgs/EraserIcon';
 import BackgroundIcon from './svgs/BackgroundIcon';
+import PanIcon from './svgs/PanIcon';
 import { useStrokeDropdown } from './StrokeTool';
 import { useShapeDropdown } from './ShapeTool';
 import { useBackgroundDropdown } from './BackgroundTool';
@@ -52,7 +53,7 @@ const useTools = () => {
       },
       {
         label: 'umi.block.sketch.pan',
-        icon: SelectIcon,
+        icon: PanIcon,
         type: Tool.Pan,
       },
       {

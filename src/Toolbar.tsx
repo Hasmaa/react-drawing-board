@@ -51,6 +51,11 @@ const useTools = () => {
         type: Tool.Select,
       },
       {
+        label: 'umi.block.sketch.pan',
+        icon: SelectIcon,
+        type: Tool.Pan,
+      },
+      {
         label: 'umi.block.sketch.pencil',
         icon: StrokeIcon,
         type: Tool.Stroke,

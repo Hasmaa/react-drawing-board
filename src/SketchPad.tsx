@@ -590,7 +590,7 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
           renderOperations(operations);
         },
         onBackgroundPositionCalculated,
-        backgroundPosition
+        backgroundPosition,
       );
       // saveGlobalTransform();
     };
@@ -774,6 +774,8 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
     switch (currentTool) {
       case Tool.Select:
         onSelectMouseDown(e, x, y, scale, operationListState, viewMatrix, setSelectedOperation);
+        break;
+      case Tool.Pan:
         break;
       case Tool.Stroke:
         onStrokeMouseDown(x, y, currentToolOption);

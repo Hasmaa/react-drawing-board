@@ -35,6 +35,7 @@ interface BlockProps {
   externalLocaleMessages?: Record<string, string>;
   onBackgroundPositionCalculated?: (pos: Position) => void;
   backgroundPosition?: Position;
+  onToolChanged?: (tool: Tool) => void;
 
   // controlled mode.
   operations?: Operation[];
@@ -87,6 +88,7 @@ const Block: React.FC<BlockProps> = (props) => {
     disableShortcutKeys,
     onBackgroundPositionCalculated,
     backgroundPosition,
+    onToolChanged,
   } = {
     ...defaultProps,
     ...props,
@@ -144,11 +146,23 @@ const Block: React.FC<BlockProps> = (props) => {
     };
   }, []);
 
+  useEffect(() => {
+    onToolChanged && onToolChanged(currentTool);
+  }, [currentTool]);
+
   const renderWithLayout = (toolbar: React.ReactElement, sketchPad: React.ReactElement) => {
     if (toolbarPlacement === 'left' || isMobileDevice) {
       return (
         <Layout style={{ flexDirection: 'row' }}>
-          <Sider width={isMobileDevice ? 40 : 55} theme="light">
+          <Sider
+            width={isMobileDevice ? 40 : 55}
+            theme="light"
+            style={{
+              position: 'sticky',
+              left: 0,
+              zIndex: 1,
+            }}
+          >
             {toolbar}
           </Sider>
           <Content>{sketchPad}</Content>

@@ -1,5 +1,6 @@
 enum Tool {
   Select = 'Select',
+  Pan = 'Pan',
   Stroke = 'Stroke',
   Shape = 'Shape',
   Text = 'Text',

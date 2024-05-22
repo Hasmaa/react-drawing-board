@@ -128,11 +128,6 @@ const useTools = () => {
             },
           ]
         : []),
-      {
-        label: 'umi.block.sketch.save',
-        icon: SaveIcon,
-        type: Tool.Save,
-      },
     ];
   }, [showBackgroundTool, showImageTool, showMagnificationTool]);
 

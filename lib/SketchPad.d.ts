@@ -30,6 +30,7 @@ export type SketchPadRef = {
     undo: () => void;
     redo: () => void;
     clear: () => void;
+    setZoomTo100: () => void;
     save: (handleSave?: onSaveCallback) => void;
 };
 export type Remove = {

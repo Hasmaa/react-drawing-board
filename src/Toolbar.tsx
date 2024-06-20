@@ -146,6 +146,7 @@ export interface ToolbarProps {
   redo: () => void;
   clear: () => void;
   save: () => void;
+  setZoomTo100: () => void;
   scale: number;
   toolbarPlacement: string;
 }
@@ -162,6 +163,7 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
     undo,
     redo,
     clear,
+    setZoomTo100,
     save,
     toolbarPlacement,
   } = props;
@@ -239,6 +241,7 @@ const Toolbar: React.FC<ToolbarProps> = (props) => {
               } else if (tool.type === Tool.Clear) {
                 clear();
               } else if (tool.type === Tool.Zoom) {
+                setZoomTo100();
               } else if (tool.type === Tool.Save) {
                 save();
               } else {

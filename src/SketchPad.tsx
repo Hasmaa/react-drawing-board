@@ -88,6 +88,7 @@ export type SketchPadRef = {
   undo: () => void;
   redo: () => void;
   clear: () => void;
+  setZoomTo100: () => void;
   save: (handleSave?: onSaveCallback) => void;
 };
 
@@ -1047,6 +1048,9 @@ const SketchPad: React.ForwardRefRenderFunction<any, SketchPadProps> = (props, r
       clear: () => {
         setSelectedOperation(null);
         handleCompleteOperation(Tool.Clear);
+      },
+      setZoomTo100: () => {
+        onViewMatrixChange([1, 0, 0, 1, 0, 0]);
       },
       save: (handleSave?: onSaveCallback) => {
         if (refCanvas.current && refContext.current) {

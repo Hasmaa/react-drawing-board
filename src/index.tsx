@@ -276,6 +276,11 @@ const Block: React.FC<BlockProps> = (props) => {
                         refSketch.current.save(onSave);
                       }
                     }}
+                    setZoomTo100={() => {
+                      if (refSketch.current) {
+                        refSketch.current.setZoomTo100();
+                      }
+                    }}
                   />,
                   <AnimatedSketchPad
                     ref={refSketch}
